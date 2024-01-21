@@ -25,7 +25,7 @@
     "date-fns": "^3.2.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.303.0",
-    "next": "14.0.4",
+    "next": "14.0.5",
     "next-themes": "^0.2.1",
     "plaiceholder": "^3.0.0",
     "prisma": "^5.7.1",
