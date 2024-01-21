@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700&family=Open+Sans:wght@400;700;800&family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --color-primary: #245c4e;
+  --color-primary-shade: #205145;
+  --color-primary-tint: #3a6c60;
+  --color-tertiary: #f49a29;
+  --color-tertiary-shade: #d78824;
+  --color-tertiary-tint: #f5a43e;
+  --color-danger: #e43c2f;
+  --color-danger-shade: #c93529;
+  --color-danger-tint: #e75044;
+  --color-secondary: #769d91;
+  --color-secondary-shade: #688a80;
+  --color-secondary-tint: #84a79c;
+  --color-warning: #ffc409;
+  --color-warning-shade: #e0ac08;
+  --color-warning-tint: #ffca22;
+  --color-success: #2dd36f;
+  --color-success-shade: #28ba62;
+  --color-success-tint: #42d77d;
+  --color-medium: #9d9d9d;
+  --color-medium-shade: #808289;
+  --color-medium-tint: #9d9fa6;
+  --color-light: #e0e9e6;
+  --color-light-contrast: #676767;
+  --color-light-shade: #c5cdca;
+  --color-light-tint: #e3ebe9;
+  --color-white: #fff;
+  --color-black: #000;
+}
+
+html,
+body,
+:root {
+  height: 100%;
+}
+
+body {
+  direction: rtl;
+  font-family: 'Cairo', sans-serif;
+}
+
+header h2 {
+  background: linear-gradient(to left, #245c4e, #769d91);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 26px;
+}
+
+.logo-text{
+  background: linear-gradient(to left, #245c4e, #769d91);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+.cl-card {
+  direction: ltr;
+}
+
+.offers-slideshow {
+  position: relative;
+  width: 100%;
+  height: 290px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 0 auto 15px;
+  margin-top: 10px;
+  transform: translateY(60px);
+}
+
+.offers-slideshow .wrapper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  animation: slide 16s infinite;
+}
+
+.offers-slideshow img {
+  width: 80%;
+  height: 90%;
+  margin: auto 30px;
+  border-radius: 15px;
+}
+
+.pizza-intro {
+  background-image: linear-gradient(
+      -225deg,
+      var(--color-primary) 0%,
+      var(--color-secondary) 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+}
+
+.spinner {
+  background-color: var(--color-secondary);
+  width: fit-content;
+  height: fit-content;
+  animation: blink 2s linear infinite;
+}
+
+@media screen and (max-width: 850px) {
+  .offers-slideshow img {
+    width: 75%;
+    height: 85%;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .offers-slideshow img {
+    margin: auto 15px;
+    width: 76%;
+    height: 80%;
+  }
+}
+
+@keyframes blink {
+  25%{
+      opacity: 0.5;
+  }
+  50%{
+    opacity: 0;
+  }
+  75%{
+    opacity: 0.5;
+  }
+}
+
+@keyframes slide{
+  0%{
+      transform: translateX(0);
+  }
+  25%{
+      transform: translateX(-80%);
+  }
+  50%{
+      transform: translateX(-10%);
+  }
+  75%{
+      transform: translateX(75%);
+  }
+  100%{
+      transform: translateX(0);
+  }
+}
+
+@keyframes textclip {
+  to {
+      background-position: 200% center;
+  }
+}

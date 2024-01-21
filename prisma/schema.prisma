@@ -1,0 +1,347 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+model LeceriaProduct {
+    id              String            @id @default(uuid())
+    name            String
+    price           Int
+    description     String            @db.Text
+    image           String
+    backgroundColor String
+    quantity        Int
+    flavours        LeceriaFlavours[]
+    sizes           Boolean           @default(false)
+    dough           Boolean           @default(false)
+    sauces          Boolean           @default(false)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model LeceriaFlavours {
+    id      String @id @default(uuid())
+    flavour String
+    color   String
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    products LeceriaProduct[]
+}
+
+model LeceriaOffers {
+    id              String  @id @default(uuid())
+    name            String
+    price           Int
+    description     String  @db.Text
+    image           String
+    backgroundColor String
+    quantity        Int
+    sizes           Boolean @default(false)
+    dough           Boolean @default(false)
+    sauces          Boolean @default(false)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model LeceriaFavorites {
+    id              String          @id @default(uuid())
+    userId          String
+    name            String
+    description     String          @db.Text
+    image           String
+    backgroundColor String
+    price           Int
+    quantity        Int
+    totalPrice      Int
+    size            String
+    chosenDough     String
+    sauces          LeceriaSauces[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model LeceriaSauces {
+    id          String           @id @default(uuid())
+    label       String
+    quantity    Int
+    image       String
+    favorites   LeceriaFavorites @relation(fields: [favoritesId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    favoritesId String
+
+    @@index([favoritesId])
+}
+
+model LeceriaOrder {
+    id         String             @id @default(uuid())
+    userId     String
+    orderItems LeceriaOrderItem[]
+    isPaid     Boolean            @default(false)
+    phone      String             @default("")
+    address    String             @default("")
+    createdAt  DateTime           @default(now())
+    updatedAt  DateTime           @updatedAt
+}
+
+model LeceriaOrderItem {
+    id          String       @id @default(uuid())
+    orderId     String // Foreign Key to Order
+    order       LeceriaOrder @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    name        String
+    image       String
+    description String
+    quantity    Int
+    price  Int
+
+    @@index([orderId])
+}
+
+
+
+
+
+
+
+
+// database: ecommerce-admin
+// username: pw1fyu90z8mj5oihew3q
+// host: aws.connect.psdb.cloud
+// password: pscale_pw_hUlxIOqwU9uFnlU2NexFHvTR0z98WBX5zr2sotNa5g3
+
+// Bello project
+model BelloBoard {
+    id            String @id @default(uuid())
+    orgId         String
+    title         String
+    imageId       String
+    imageThumbUrl String @db.Text
+    imageFullUrl  String @db.Text
+    imageUserName String @db.Text
+    imageLinkHTML String @db.Text
+
+    lists BelloList[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model BelloList {
+    id    String @id @default(uuid())
+    title String
+    order Int
+
+    boardId String
+    board   BelloBoard @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+    cards BelloCard[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([boardId])
+}
+
+model BelloCard {
+    id          String  @id @default(uuid())
+    title       String
+    order       Int
+    description String? @db.Text
+
+    listId String
+    list   BelloList @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([listId])
+}
+
+enum BelloACTION {
+    CREATE
+    UPDATE
+    DELETE
+}
+
+enum Bello_ENTITY_TYPE {
+    BOARD
+    LIST
+    CARD
+}
+
+model BelloAuditLog {
+    id          String            @id @default(uuid())
+    orgId       String
+    action      BelloACTION
+    entityId    String
+    entityType  Bello_ENTITY_TYPE
+    entityTitle String
+    userId      String
+    userImage   String            @db.Text
+    userName    String            @db.Text
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model BelloOrgLimit {
+    id    String @id @default(uuid())
+    orgId String @unique
+    count Int    @default(0)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model BelloOrgSubscription {
+    id    String @id @default(uuid())
+    orgId String @unique
+
+    stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+    stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+    stripePriceId          String?   @map(name: "stripe_price_id")
+    stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+}
+
+// ecoomerce project
+
+model Store {
+    id         String      @id @default(uuid())
+    name       String
+    userId     String
+    guestId    String?
+    billboards Billboard[] @relation("StoreToBillboard")
+    categories Category[]  @relation("StoreToCategory")
+    Products   Product[]   @relation("StoreToProduct")
+    sizes      Size[]      @relation("StoreToSize")
+    colors     Color[]     @relation("StoreToColor")
+    orders     Order[]     @relation("StoreToOrder")
+    createdAt  DateTime    @default(now())
+    updatedAt  DateTime    @updatedAt
+}
+
+model Billboard {
+    id         String     @id @default(uuid())
+    storeId    String
+    store      Store      @relation("StoreToBillboard", fields: [storeId], references: [id])
+    categories Category[]
+    label      String
+    imageUrl   String
+    createdAt  DateTime   @default(now())
+    updatedAt  DateTime   @updatedAt
+
+    @@index([storeId])
+}
+
+model Category {
+    id          String    @id @default(uuid())
+    storeId     String // Foreign Key to Store
+    store       Store     @relation("StoreToCategory", fields: [storeId], references: [id])
+    billboardId String // Foreign Key to Billboard
+    billboard   Billboard @relation(fields: [billboardId], references: [id])
+    name        String
+    products    Product[] @relation("CategoryToProduct")
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+
+    @@index([storeId])
+    @@index([billboardId])
+}
+
+model Product {
+    id         String      @id @default(uuid())
+    storeId    String // Foreign Key to Store
+    store      Store       @relation("StoreToProduct", fields: [storeId], references: [id])
+    categoryId String // Foreign Key to Category
+    category   Category    @relation("CategoryToProduct", fields: [categoryId], references: [id])
+    name       String
+    price      Decimal
+    isFeatured Boolean     @default(false)
+    isArchived Boolean     @default(false)
+    sizeId     String // Foreign Key to Size
+    size       Size        @relation(fields: [sizeId], references: [id])
+    colorId    String // Foreign Key to Color
+    color      Color       @relation(fields: [colorId], references: [id])
+    images     Image[] // Relation to Image model
+    orderItems OrderItem[] // Relation to Order model
+    createdAt  DateTime    @default(now())
+    updatedAt  DateTime    @updatedAt
+
+    @@index([storeId])
+    @@index([categoryId])
+    @@index([sizeId])
+    @@index([colorId])
+}
+
+model Order {
+    id         String      @id @default(uuid())
+    storeId    String // Foreign Key to Store
+    store      Store       @relation("StoreToOrder", fields: [storeId], references: [id])
+    orderItems OrderItem[] // Relation to OrderItem model
+    isPaid     Boolean     @default(false)
+    phone      String      @default("")
+    address    String      @default("")
+    createdAt  DateTime    @default(now())
+    updatedAt  DateTime    @updatedAt
+
+    @@index([storeId])
+}
+
+model OrderItem {
+    id        String  @id @default(uuid())
+    orderId   String // Foreign Key to Order
+    order     Order   @relation(fields: [orderId], references: [id])
+    productId String // Foreign Key to Product
+    product   Product @relation(fields: [productId], references: [id])
+
+    @@index([orderId])
+    @@index([productId])
+}
+
+model Size {
+    id        String    @id @default(uuid())
+    storeId   String // Foreign Key to Store
+    store     Store     @relation("StoreToSize", fields: [storeId], references: [id])
+    name      String
+    value     String
+    products  Product[] // Relation to Product model
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+
+    @@index([storeId])
+}
+
+model Color {
+    id        String    @id @default(uuid())
+    storeId   String // Foreign Key to Store
+    store     Store     @relation("StoreToColor", fields: [storeId], references: [id])
+    name      String
+    value     String
+    products  Product[] // Relation to Product model
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+
+    @@index([storeId])
+}
+
+model Image {
+    id        String   @id @default(uuid())
+    productId String // Foreign Key to Product
+    product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+    url       String // URL of the image
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([productId])
+}
