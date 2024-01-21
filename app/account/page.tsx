@@ -22,7 +22,7 @@ function AccountPage() {
         <div className="mt-24">
             <Heading title="حسابي" />
             <div className='mx-auto w-fit flex flex-col gap-6 text-center mb-16'>
-                <UserProfile />
+                {/* <UserProfile /> */}
             </div>
         </div>
     )

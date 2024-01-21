@@ -15,7 +15,7 @@ async function Offerspage() {
     return (
         <div className="mt-24">
             <Heading title="العروض"/>
-            <OffersClient data={offers}/>
+            {/* <OffersClient data={offers}/> */}
         </div>
     )
 }

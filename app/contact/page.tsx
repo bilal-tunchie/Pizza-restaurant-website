@@ -41,7 +41,7 @@ function ConatctPage() {
                 <p className="text-center text-lg mb-3 leading-8">عندك سؤال؟ تواصل مع احد ممثلي خدمة العملاء.  وبيكون سعيد بمساعدتك على الرقم : </p>
                 <h3 className="text-lg">920123456</h3>
             </div>
-            <div className="w-[90%] sm:w-3/4 mx-auto">
+            {/* <div className="w-[90%] sm:w-3/4 mx-auto">
                 <h1 className="text-3xl mt-10 ">الأسئلة الشائعة</h1>
                 <Accordion type="single" collapsible>
                     {fQ.map((item, i) => (
@@ -55,7 +55,7 @@ function ConatctPage() {
                         </AccordionItem>
                     ))}
                 </Accordion>
-            </div>
+            </div> */}
         </div>
     )
 }
