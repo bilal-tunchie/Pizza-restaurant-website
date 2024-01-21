@@ -36,9 +36,9 @@ function OrdersClient({ orders, bluryImage }: OrdersClientProps) {
         }
     }, [searchParams, cart])
 
-    // const orderTotalPrice = (order: ordersWithOrderItems): number => {
-    //     return order.orderItems.reduce((total, item) => total + (item.price * item.quantity), 0)
-    // };
+    const orderTotalPrice = (order: ordersWithOrderItems): number => {
+        return order.orderItems.reduce((total, item) => total + (item.price * item.quantity), 0)
+    };
 
     return (
         <div className='w-[97%] md:w-3/4 mx-auto'>
@@ -59,7 +59,7 @@ function OrdersClient({ orders, bluryImage }: OrdersClientProps) {
                             >
                                 <div>
                                     <p className='text-primary font-semibold text-xl mb-5'>
-                                        {/* {orderTotalPrice(order)} ريال */}
+                                        {orderTotalPrice(order)} ريال
                                     </p>
                                     <p dir='ltr'>{format(order.createdAt, 'dd MMM, yyy')}</p>
                                     <p className='text-secondary font-semibold'>تم التوصيل</p>

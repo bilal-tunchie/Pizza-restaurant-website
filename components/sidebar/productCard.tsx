@@ -29,11 +29,11 @@ function ProductCard({ data, isFavorite }: ProductCardProps) {
         cart.onQuantityChange(id, value);
     }
 
-    if (id && intialQuantity === 0 && !preventTwiceToast.current) {
-        cart.removeItem(id)
-        preventTwiceToast.current = true;
-        toast.success("تم حذف المنتج من السلة", { style: styleToast })
-    };
+    // if (id && intialQuantity === 0 && !preventTwiceToast.current) {
+    //     cart.removeItem(id)
+    //     preventTwiceToast.current = true;
+    //     toast.success("تم حذف المنتج من السلة", { style: styleToast })
+    // };
 
     const finalTotalPrice = useMemo(() => ( totalPrice * quantity ), [totalPrice, quantity])
     
