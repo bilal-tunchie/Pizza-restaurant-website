@@ -45,8 +45,7 @@ async function Offerspage() {
                 </Link>
             </div>
             :
-            // <OrdersClient orders={orders} bluryImage={bluryImage}/>
-            <></>
+            <OrdersClient orders={orders} bluryImage={bluryImage}/>
             }
         </div>
     )

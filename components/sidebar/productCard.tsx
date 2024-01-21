@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import useCart from "@/hooks/use-cart";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { toast } from "sonner";
 import ProductDetails from "./productDetails";
@@ -29,11 +29,14 @@ function ProductCard({ data, isFavorite }: ProductCardProps) {
         cart.onQuantityChange(id, value);
     }
 
-    if (id && intialQuantity === 0 && !preventTwiceToast.current) {
-        cart.removeItem(id)
-        preventTwiceToast.current = true;
-        toast.success("تم حذف المنتج من السلة", { style: styleToast })
-    };
+    useEffect(() => {
+        if (id && intialQuantity === 0 && !preventTwiceToast.current) {
+            cart.removeItem(id)
+            preventTwiceToast.current = true;
+            toast.success("تم حذف المنتج من السلة", { style: styleToast })
+        };
+        
+    }, [ cart, id, intialQuantity ])
 
     const finalTotalPrice = useMemo(() => ( totalPrice * quantity ), [totalPrice, quantity])
     

@@ -12,8 +12,8 @@ export default async function Home() {
     return (
         <ClientOnly>
             <div>
-                {/* <Billboard/> */}
-                {/* <MenuNavWrapper data={products} bluryImage={bluryImage}/> */}
+                <Billboard/>
+                <MenuNavWrapper data={products} bluryImage={bluryImage}/>
             </div>
         </ClientOnly>
     )
