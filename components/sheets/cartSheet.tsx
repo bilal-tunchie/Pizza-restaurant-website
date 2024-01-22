@@ -5,7 +5,6 @@ import Sidebar from "../sidebar/sidebar"
 import SheetComponent from "./sheet"
 import { FavoritesWithSauces } from "@/types"
 import { useWindowSize } from 'usehooks-ts'
-import { X } from "lucide-react"
 
 interface CartSheetProps {
     favorites: FavoritesWithSauces[];
@@ -13,7 +12,7 @@ interface CartSheetProps {
 }
 function CartSheet({ favorites }: CartSheetProps) {
     const cartSheet = useCartSheet();
-    const { width } = useWindowSize()
+    const { width } = useWindowSize();
 
     if (width >= 1536) {
         return

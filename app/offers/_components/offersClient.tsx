@@ -24,7 +24,7 @@ function OffersClient({ data }: OffersCardProps) {
     }
 
     return (
-        <div className='flex flex-wrap justify-center gap-y-32'>
+        <div className='flex flex-wrap justify-center gap-y-32 pb-48'>
             {data.map(item => (
                 <div
                     className="relative flex justify-between gap-4 md:w-[80%] w-[90%]

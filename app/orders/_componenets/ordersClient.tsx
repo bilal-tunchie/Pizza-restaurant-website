@@ -41,7 +41,7 @@ function OrdersClient({ orders, bluryImage }: OrdersClientProps) {
     };
 
     return (
-        <div className='w-[97%] md:w-3/4 mx-auto'>
+        <div className='w-[95%] md:w-3/4 mx-auto pb-48'>
             <Accordion type="single" collapsible  dir='ltr'>
                 {orders.map((order, i) => (
                     <AccordionItem value={order.id} className="text-xl mb-5" key={order.id}>
@@ -64,7 +64,7 @@ function OrdersClient({ orders, bluryImage }: OrdersClientProps) {
                                     <p dir='ltr'>{format(order.createdAt, 'dd MMM, yyy')}</p>
                                     <p className='text-secondary font-semibold'>تم التوصيل</p>
                                 </div>
-                                <div className='max-w-[200px] text-left text-[16px]'>
+                                <div className='max-w-[150px] sm:max-w-[200px] text-left text-[16px]'>
                                     <p>{order.address}</p>
                                     <p dir='rtl'>{order.phone.slice(1)}</p>
                                 </div>

@@ -20,9 +20,9 @@ function OrderItem({ item, bluryImage }: OrderItemProps) {
             </div>
             <div className="flex-1">
                 <p>{item.name}</p>
-                <p className="text-sm mt-2">{item.description}</p>
+                <p className="text-[12px] mt-4 text-light-shade">{item.description}</p>
             </div>
-            <div className="flex gap-8 sm:gap-16 w-40 sm:w-48 justify-between">
+            <div className="flex gap-3 sm:gap-16 w-32 sm:w-48 justify-between">
                 <p dir="ltr" className="text-center w-16">{item.quantity + " x " + item.price}</p>
                 <p>{item.quantity * item.price} ريال</p>
             </div>

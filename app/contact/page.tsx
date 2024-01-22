@@ -35,7 +35,7 @@ function ConatctPage() {
     ]
 
     return (
-        <div className="mt-24">
+        <div className="mt-24 pb-48">
             <Heading title="تواصل" />
             <div className="text-center text-lg bg-primary py-3 text-white rounded-lg mx-4">
                 <p className="text-center text-lg mb-3 leading-8">عندك سؤال؟ تواصل مع احد ممثلي خدمة العملاء.  وبيكون سعيد بمساعدتك على الرقم : </p>
