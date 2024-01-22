@@ -52,9 +52,11 @@ export default function ProductList({ filterData, data, refs, bluryImage }: Prod
                     return (
                         <div 
                             className={cn(`relative flex justify-between gap-4 w-[85%] md:w-[calc(45%_-_30px)] 
-                            lg:w-[calc(32%_-_30px)] min-h-[200px] 
-                            shadow-[0_6px_17px_#0003] cursor-pointer p-4 rounded-[15px] mx-auto`,
-                            item?.backgroundColor
+                                lg:w-[calc(32%_-_30px)] min-h-[200px] 
+                                shadow-[0_6px_17px_#0003] cursor-pointer p-4 rounded-[15px] mx-auto`,
+                                item?.backgroundColor === "bg-tertiary" && "bg-tertiary",
+                                item?.backgroundColor === "bg-primary" && "bg-primary",
+                                item?.backgroundColor === "bg-secondary-tint" && "bg-secondary-tint",
                             )}
                             key={item?.id} 
                             style={{ transform: moveDown}}  

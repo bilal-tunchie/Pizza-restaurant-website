@@ -40,8 +40,11 @@ function ProductItem({ item, bluryImage } : ProductItemProps) {
                         <div
                             key={i}
                             className={cn(`bg-medium text-white rounded-full 
-                                            w-10 h-10 flex justify-center items-center text-[12px]`,
-                                fav.flavour && fav.color,
+                                w-10 h-10 flex justify-center items-center text-[12px]`,
+                                fav.flavour === "hot" && "bg-danger",
+                                fav.flavour === "envira" && "bg-envira",
+                                fav.flavour === "salt" && "bg-salt",
+                                fav.flavour === "light-shade" && "bg-light-shade",
                             )}
                         >
                             {getIcon(fav.flavour)}
