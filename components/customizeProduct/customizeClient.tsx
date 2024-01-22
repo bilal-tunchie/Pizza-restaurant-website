@@ -84,7 +84,7 @@ function CustomizeClient({ favorites, bluryImage }: CustomizeClientProps) {
                     className="w-7 p-1 m-0"
                 />
             </div>
-            <ScrollArea className="h-[calc(100vh-140px)] px-4 mt-2" dir="rtl">
+            <ScrollArea className="h-[calc(100%-20%)] px-4 mt-2" dir="rtl">
                 <CustomizeInfo data={data} bluryImage={bluryImage}/>
                 {data.sizes && <div>
                     <h3 className="mt-4 text-lg font-semibold">الحجم</h3>

@@ -54,7 +54,7 @@ function OrdersClient({ orders, bluryImage }: OrdersClientProps) {
                                 {i + 1}
                             </p>
                             <div 
-                                className='flex justify-between gap-10 text-sm sm:text-lg 
+                                className='flex justify-between gap-8 text-sm sm:text-lg 
                                 text-right sm:px-24 px-6 w-full items-center' 
                             >
                                 <div>
