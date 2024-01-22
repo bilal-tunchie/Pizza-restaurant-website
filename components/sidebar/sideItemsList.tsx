@@ -23,7 +23,7 @@ function SideItemsList({ data, isFavorite }: SideItemsListProps) {
         return (
             <>
                 {!isFavorite ?
-                    <div className="w-full text-center mt-10">
+                    <div className="w-full text-center mt-10 min-h-[700px]">
                         <Image 
                             src={empty_card} 
                             alt="empty" 
@@ -34,7 +34,7 @@ function SideItemsList({ data, isFavorite }: SideItemsListProps) {
                         <p>سلتك فاضية. ما اشتقت للبيتزا؟</p>
                     </div>
                 :
-                    <div className="w-full text-center mt-10">
+                    <div className="w-full text-center mt-10 min-h-[700px]">
                         <div className="bg-secondary mb-3 rounded-full p-2 cursor-pointer w-fit mx-auto" role="button">
                             <IoIosHeart size={38} color="#fff"/>
                         </div>
